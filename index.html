@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do you love me?</title>
+
+    <style>
+        body {
+            background-color: #fdf2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+            position: relative;
+        }
+
+        img {
+            width: 150px;
+            height: auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            height: 60px;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.1s ease;
+        }
+
+        #yes-btn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #no-btn {
+            background-color: #fb5607;
+            color: white;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Heart Loader */
+        #heart-loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px;
+        }
+
+        .heart {
+            font-size: 50px;
+            color: #ff4d6d;
+            animation: heartSpin 1.5s ease-in-out forwards;
+        }
+
+        @keyframes heartSpin {
+            0% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(3) rotate(360deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div id="question-section">
+            <img id="main-gif" src="https://media.tenor.com/5vsmBAsHr-YAAAAM/persuade.gif" alt="Please">
+            <h1>Do you love me?</h1>
+            <div class="btn-group">
+                <button id="yes-btn">Yes</button>
+                <button id="no-btn">No</button>
+            </div>
+        </div>
+
+        <div id="heart-loader" class="hidden">
+            <div class="heart">❤️</div>
+        </div>
+
+        <div id="success-section" class="hidden">
+            <img src="https://media.tenor.com/vNnh9I9GeuAAAAAM/sa.gif" alt="Happy">
+            <h1>I knew it! 😍</h1>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const questionSection = document.getElementById('question-section');
+        const heartLoader = document.getElementById('heart-loader');
+        const successSection = document.getElementById('success-section');
+
+        // No button bhagne wala logic 😈
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.floor(Math.random() * 200) - 100;
+            const y = Math.floor(Math.random() * 200) - 100;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // Yes click animation ❤️
+        yesBtn.addEventListener('click', () => {
+            questionSection.classList.add('hidden');
+            heartLoader.classList.remove('hidden');
+
+            setTimeout(() => {
+                heartLoader.classList.add('hidden');
+                successSection.classList.remove('hidden');
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
